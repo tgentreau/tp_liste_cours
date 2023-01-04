@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recherchez un cours</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    name="formTest"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit(f)"
+  >
+    <ion-searchbar
+      [(ngModel)]="form.searchValue"
+      #searchValue="ngModel"
+      name="searchValue"
+      required="true"
+    ></ion-searchbar>
+    <div *ngIf="searchValue.errors && f.submitted">
+      <ion-note class="ion-margin" *ngIf="searchValue.errors?.['required']" style="color: #eb445a">
+        Veuillez entrer un caractère.
+      </ion-note>
+    </div>
+    <ion-button type="submit" class="ion-margin" expand="block" color="primary">Recherchez</ion-button>
+  </form>
+
+</ion-content>

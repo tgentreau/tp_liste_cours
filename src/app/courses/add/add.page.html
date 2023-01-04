@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajout d'un nouveau cours</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    name="formTest"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit(f)"
+  >
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Nom du cours</ion-label>
+      <ion-input
+        [clearInput]="true"
+        [(ngModel)]="form.nomCours"
+        #nomCours="ngModel"
+        name="nomCours"
+        required="true"
+        minlength="3"
+      ></ion-input>
+      <div *ngIf="nomCours.errors && f.submitted">
+        <ion-note *ngIf="nomCours.errors?.['required']" style="color: #eb445a">
+          Le nom du cours est requis
+        </ion-note>
+        <ion-note *ngIf="nomCours.errors['minlength']" style="color: #eb445a">
+          Le nom du cours doit faire au minimum 3 caractères
+        </ion-note>
+      </div>
+    </ion-item>
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Nom du professeur</ion-label>
+      <ion-input
+        [(ngModel)]="form.nomProf"
+        #nomProf="ngModel"
+        name="nomProf"
+        [clearInput]="true"
+        required="true"
+        minlength="3"
+      ></ion-input>
+      <div *ngIf="nomProf.errors && f.submitted">
+        <ion-note *ngIf="nomProf.errors?.['required']" style="color: #eb445a">
+          Le nom du professeur est requis
+        </ion-note>
+        <ion-note *ngIf="nomProf.errors['minlength']" style="color: #eb445a">
+          Le nom du professeur doit faire au minimum 3 caractères
+        </ion-note>
+      </div>
+    </ion-item>
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Nombre d'étudiants</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="form.nbEtud"
+        #nbEtud="ngModel"
+        name="nbEtud"
+        [clearInput]="true"
+        required="true"
+      ></ion-input>
+      <div *ngIf="nbEtud.errors && f.submitted">
+        <ion-note *ngIf="nbEtud.errors?.['required']" style="color: #eb445a">
+          Le nombre d'étudiant est requis
+        </ion-note>
+        <ion-note *ngIf="nbEtud.errors['min']" style="color: #eb445a">
+          Le nombre d'étudiant doit être supérieur à 1
+        </ion-note>
+      </div>
+    </ion-item>
+    <ion-button type="submit" class="ion-margin" expand="block" color="success">Soumettre</ion-button>
+  </form>
+</ion-content>

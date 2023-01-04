@@ -1,20 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <button *ngIf="promptEvent" (click)="onInstall()">Install</button>
     <ion-title>
-      Blank
+      header de la page
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="openMenu($event)">
+        <ion-icon slot="icon-only"
+                  ios="ellipsis-horizontal"
+                  md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-toolbar>
+    <ion-title size="large">contenu de la page</ion-title>
+  </ion-toolbar>
+  <button (click)="openAlert()">ouvrir l'alerte</button>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>footer de la page</ion-title>
+  </ion-toolbar>
+</ion-footer>

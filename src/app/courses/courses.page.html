@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cours</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2 class="ion-margin">Liste de cours</h2>
+  <!--  <ion-icon class="ion-margin" name="add-circle-outline" color="success" style="cursor: pointer; width: 30px; height: 30px;" routerLink="add"></ion-icon>-->
+  <ion-item class="ion-margin">
+    <ion-text slot="start"><a routerLink="add">Ajoutez un nouveau cours</a></ion-text>
+    <ion-button *ngIf="coursService.originLength !== cours.length" (click)="resetFilter()">Voir la liste complète</ion-button>
+    <ion-text slot="end"><a routerLink="search">Recherchez parmi la liste</a></ion-text>
+  </ion-item>
+  <ion-list inset="true">
+    <ion-list-header>
+      <ion-item>
+        <p *ngIf="boolCours" class="ion-margin" style="cursor: pointer" (click)="sortAlphabeticalCoursAsc()">Nom du cours <ion-icon name="caret-up-outline"></ion-icon></p>
+        <p *ngIf="!boolCours" class="ion-margin" style="cursor: pointer" (click)="sortAlphabeticalCoursDesc()">Nom du cours <ion-icon name="caret-down-outline"></ion-icon></p>
+        <p *ngIf="boolProf" class="ion-margin" style="cursor: pointer" (click)="sortAlphabeticalProfAsc()">Nom du professeur <ion-icon name="caret-up-outline"></ion-icon></p>
+        <p *ngIf="!boolProf" class="ion-margin" style="cursor: pointer" (click)="sortAlphabeticalProfDesc()">Nom du professeur <ion-icon name="caret-down-outline"></ion-icon></p>
+        <p *ngIf="boolEtudiant" class="ion-margin" style="cursor: pointer" (click)="sortNumberAsc()">Nombre d'étudiants<ion-icon name="caret-up-outline"></ion-icon></p>
+        <p *ngIf="!boolEtudiant" class="ion-margin" style="cursor: pointer" (click)="sortNumberDesc()">Nombre d'étudiants<ion-icon name="caret-down-outline"></ion-icon></p>
+      </ion-item>
+    </ion-list-header>
+    <ion-item *ngIf="cours.length === 0">Aucune donnée disponible</ion-item>
+    <ion-item *ngFor="let elt of cours">
+      <p class="ion-margin">Nom du cours: {{elt.nomCours}}</p>
+      <p class="ion-margin">Nom du professeur: {{elt.nomProf}}</p>
+      <p class="ion-margin">
+        Nombre d'étudiants : {{elt.nb_etud}}
+      </p>
+      <ion-icon
+        slot="end"
+        name="trash"
+        style="cursor: pointer;"
+        color="danger"
+        (click)="consentForDelete(elt)"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
